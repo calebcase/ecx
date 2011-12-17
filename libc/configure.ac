@@ -1,4 +1,4 @@
-AC_INIT([ec], [0.1], [calebcase@gmail.com])
+AC_INIT([ecx_libc], [0.1], [calebcase@gmail.com])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign -Wall -Werror])
