@@ -490,3 +490,34 @@ ecx_tmpnam(char *s)
 
     return t;
 }
+
+#ifdef _GNU_SOURCE
+
+int
+ecx_asprintf(char **strp, const char *format, ...)
+{
+    va_list ap;
+
+    va_start(ap, format);
+    int status = vasprintf(strp, format, ap);
+    va_end(ap);
+
+    if (status < 0) {
+        ec_throw_str(ECX_PRINTF_FAILURE) NULL;
+    }
+
+    return status;
+}
+
+int
+ecx_vasprintf(char **strp, const char *format, va_list ap)
+{
+    int status = vasprintf(strp, format, ap);
+    if (status < 0) {
+        ec_throw_str(ECX_PRINTF_FAILURE) NULL;
+    }
+
+    return status;
+}
+
+#endif

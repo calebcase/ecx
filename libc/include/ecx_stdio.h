@@ -83,4 +83,9 @@ int ecx_setvbuf(FILE *stream, char *buf, int mode, size_t size);
 
 char *ecx_tmpnam(char *s);
 
+#ifdef _GNU_SOURCE
+int ecx_asprintf(char **strp, const char *format, ...);
+int ecx_vasprintf(char **strp, const char *format, va_list ap);
+#endif
+
 #endif /* ECX_STDIO_H */
