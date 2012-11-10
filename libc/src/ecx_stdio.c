@@ -150,6 +150,114 @@ ecx_fflush(FILE *stream)
     return status;
 }
 
+const char ECX_FGETC_ERROR[] = "fgetc(...): File Read Char Error";
+
+int
+ecx_fgetc(FILE *stream)
+{
+    errno = 0;
+    int status = fgetc(stream);
+    if (status == EOF && ferror(stream) != 0) {
+        if (errno != 0) {
+            ec_throw_errno(errno, NULL) NULL;
+        }
+        else {
+            ec_throw_str(ECX_FGETC_ERROR) NULL;
+        }
+    }
+
+    return status;
+}
+
+const char ECX_FGETS_ERROR[] = "fgets(...): File Read String Error";
+
+char *
+ecx_fgets(char *s, int size, FILE *stream)
+{
+    errno = 0;
+    char *str = fgets(s, size, stream);
+    if (str == NULL && ferror(stream) != 0) {
+        if (errno != 0) {
+            ec_throw_errno(errno, NULL) NULL;
+        }
+        else {
+            ec_throw_str(ECX_FGETS_ERROR) NULL;
+        }
+    }
+
+    return str;
+}
+
+const char ECX_GETC_ERROR[] = "getc(...): Read Char Error";
+
+int
+ecx_getc(FILE *stream)
+{
+    errno = 0;
+    int status = getc(stream);
+    if (status == EOF && ferror(stream) != 0) {
+        if (errno != 0) {
+            ec_throw_errno(errno, NULL) NULL;
+        }
+        else {
+            ec_throw_str(ECX_GETC_ERROR) NULL;
+        }
+    }
+
+    return status;
+}
+
+const char ECX_GETCHAR_ERROR[] = "getchar(...): Read Char Error";
+
+int
+ecx_getchar(void)
+{
+    errno = 0;
+    int status = getchar();
+    if (status == EOF && ferror(stdin) != 0) {
+        if (errno != 0) {
+            ec_throw_errno(errno, NULL) NULL;
+        }
+        else {
+            ec_throw_str(ECX_GETCHAR_ERROR) NULL;
+        }
+    }
+
+    return status;
+}
+
+const char ECX_GETS_ERROR[] = "gets(...): Read String Error";
+
+char *
+ecx_gets(char *s)
+{
+    errno = 0;
+    char *str = gets(s);
+    if (str == NULL && ferror(stdin) != 0) {
+        if (errno != 0) {
+            ec_throw_errno(errno, NULL) NULL;
+        }
+        else {
+            ec_throw_str(ECX_FGETS_ERROR) NULL;
+        }
+    }
+
+    return str;
+}
+
+const char ECX_UNGETC_ERROR[] = "ungetc(...): Pushback Error";
+
+int
+ecx_ungetc(int c, FILE *stream)
+{
+    int status = ungetc(c, stream);
+    if (status == EOF) {
+        ec_throw_str(ECX_UNGETC_ERROR) NULL;
+    }
+
+    return status;
+}
+
 const char ECX_FREAD_ERROR[] = "fread(...): File Read Error";
 
 size_t

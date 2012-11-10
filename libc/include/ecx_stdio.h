@@ -34,14 +34,12 @@ int ecx_fileno(FILE *stream);
 
 int ecx_fflush(FILE *stream);
 
-/*
 int ecx_fgetc(FILE *stream);
 char *ecx_fgets(char *s, int size, FILE *stream);
 int ecx_getc(FILE *stream);
 int ecx_getchar(void);
 char *ecx_gets(char *s);
 int ecx_ungetc(int c, FILE *stream);
-*/
 
 extern const char ECX_FREAD_ERROR[]; /* Data: C String */
 size_t ecx_fread(void *ptr, size_t size, size_t nmemb, FILE *stream);
