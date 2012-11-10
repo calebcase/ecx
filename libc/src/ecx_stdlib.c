@@ -97,7 +97,7 @@ ecx_realloc(void *ptr, size_t size)
     if (new_ptr == NULL && size != 0) {
         ec_throw_errno(errno, NULL) NULL;
     }
-    return ptr;
+    return new_ptr;
 }
 
 int
