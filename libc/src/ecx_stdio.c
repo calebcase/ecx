@@ -490,7 +490,7 @@ ecx_fscanf(FILE *stream, const char *format, ...)
     va_list ap;
 
     va_start(ap, format);
-    int status = fscanf(stream, format, ap);
+    int status = vfscanf(stream, format, ap);
     va_end(ap);
 
     if (status == EOF) {
@@ -513,7 +513,7 @@ ecx_sscanf(const char *str, const char *format, ...)
     va_list ap;
 
     va_start(ap, format);
-    int status = sscanf(str, format, ap);
+    int status = vsscanf(str, format, ap);
     va_end(ap);
 
     if (status == EOF) {
