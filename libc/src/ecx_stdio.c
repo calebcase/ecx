@@ -1,5 +1,6 @@
 #include <ec/ec.h>
 #include <errno.h>
+#include <string.h>
 
 #include <ecx_stdio.h>
 
@@ -23,7 +24,7 @@ ecx_fopen(const char *path, const char *mode)
 {
     FILE *stream = fopen(path, mode);
     if (stream == NULL) {
-        ec_throw_errno(errno, NULL) NULL;
+        ec_throw_errno(errno, free) strdup(path);
     }
 
     return stream;
